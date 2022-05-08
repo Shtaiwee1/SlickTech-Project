@@ -1,5 +1,6 @@
 const UserController = require("../controllers/user.controller");
 const ProjectController = require("../controllers/project.controller");
+const ProductController = require('../controllers/product.controller');
 const { authenticate } = require("../config/jwt.config");
 const { upload } = require("../config/multer.config");
 module.exports = function (app) {
@@ -13,4 +14,8 @@ module.exports = function (app) {
   app.post("/api/login", UserController.login);
   app.get("/api/logout", UserController.logout);
   app.get("/api/check_login", UserController.checkLogIn);
+
+  //product api
+  app.post("/api/addProduct",upload.single("image"),ProductController.createProduct);
+  app.get("/api/allProduct",ProductController.getAllProduct);
 };
