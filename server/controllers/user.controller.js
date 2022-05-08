@@ -8,10 +8,15 @@ module.exports.index = (req, res) => {
 
 module.exports.register = async (req, res) => {
   const users = await User.find({});
-  console.log(req.body);
+
   const { firstName, lastName, email, address, password, confirmPassword } =
     req.body;
-  console.log(req.file);
+
+  let imageFile = "";
+  if (req.file) {
+    imageFile = req.file.filename;
+  }
+
   if (users.length === 0) {
     User.create({
       firstName,
@@ -20,7 +25,7 @@ module.exports.register = async (req, res) => {
       address,
       password,
       confirmPassword,
-      image: req.file.filename,
+      image: imageFile,
       isAdmin: true,
     })
       .then((user) => {
@@ -39,7 +44,15 @@ module.exports.register = async (req, res) => {
       })
       .catch((err) => res.status(400).json(err));
   } else {
-    User.create(req.body)
+    User.create({
+      firstName,
+      lastName,
+      email,
+      address,
+      password,
+      confirmPassword,
+      image: imageFile,
+    })
       .then((user) => {
         const userToken = jwt.sign(
           {
