@@ -1,4 +1,4 @@
-const { Project } = require("../models/project.model");
+const { Review } = require("../models/review.model");
 
 module.exports.index = (request, response) => {
   response.json({
@@ -6,46 +6,48 @@ module.exports.index = (request, response) => {
   });
 };
 
-module.exports.createProject = (req, res) => {
-  Project.create(req.body)
-    .then((project) => res.json(project))
+module.exports.createReview = (req, res) => {
+  Review.create(req.body)
+    .then((review) => res.json(review))
     .catch((err) => res.status(400).json(err));
 };
 
-module.exports.getAllProjects = (req, res) => {
-  Project.find({})
+module.exports.getAllReviews = (req, res) => {
+  Review.find({})
+    .populate("user")
+    .populate("product")
     .sort("dueDate")
-    .then((projects) => res.json(projects))
+    .then((reviews) => res.json(reviews))
     .catch((err) => res.status(400).json(err));
 };
 
-/* module.exports.getProject = (req, res) => {
+/* module.exports.getReview = (req, res) => {
   const { id } = req.params;
   Athlete.findOne({ _id: id })
     .then((athlete) => res.json(athlete))
     .catch((err) => res.status(400).json(err));
 }; */
 
-module.exports.deleteProject = (req, res) => {
+module.exports.deleteReview = (req, res) => {
   const { id } = req.params;
-  Project.deleteOne({
+  Review.deleteOne({
     _id: id,
   })
-    .then((project) => res.json(project))
+    .then((review) => res.json(review))
     .catch((err) => {
       res.status(400).json(err);
     });
 };
 
-module.exports.updateProject = (req, res) => {
+module.exports.updateReview = (req, res) => {
   const { id } = req.params;
-  Project.findOneAndUpdate(
+  Review.findOneAndUpdate(
     {
       _id: id,
     },
     req.body,
     { new: true, runValidators: true }
   )
-    .then((updatedProject) => res.json(updatedProject))
+    .then((updatedReview) => res.json(updatedReview))
     .catch((err) => res.status(400).send(err));
 };
