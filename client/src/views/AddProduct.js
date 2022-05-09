@@ -17,6 +17,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import NavBar from "../components/NavBar";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Alert } from "@mui/material";
 
 function Copyright(props) {
   return (
@@ -68,7 +69,7 @@ export default function SignUp() {
       })
       .catch((err) => {
         console.log(err.response);
-        setErrors(err.response);
+        setErrors(err.response.data.errors);
       });
   };
 
@@ -79,7 +80,7 @@ export default function SignUp() {
     <>
       <NavBar />
       <div style={{ marginTop: "150px" }}>
-        <Container component="main" maxWidth="xs">
+        <Container component="main" maxWidth="sm">
           <CssBaseline />
           <Box
             sx={{
@@ -100,6 +101,11 @@ export default function SignUp() {
             >
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
+                  {"title" in errors && (
+                    <Alert severity="error" className="mb-3">
+                      {errors.title.message}
+                    </Alert>
+                  )}
                   <TextField
                     value={title}
                     autoComplete="given-name"
@@ -115,6 +121,11 @@ export default function SignUp() {
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
+                  {"price" in errors && (
+                    <Alert severity="error" className="mb-3">
+                      {errors.price.message}
+                    </Alert>
+                  )}
                   <TextField
                     required
                     fullWidth
@@ -142,6 +153,11 @@ export default function SignUp() {
                   </Form.Group>
                 </Grid>
                 <Grid item xs={12}>
+                  {"desc" in errors && (
+                    <Alert severity="error" className="mb-3">
+                      {errors.desc.message}
+                    </Alert>
+                  )}
                   <TextareaAutosize
                     value={desc}
                     aria-label="minimum height"
@@ -152,12 +168,7 @@ export default function SignUp() {
                   />
                 </Grid>
               </Grid>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-              >
+              <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2 }}>
                 Add Product
               </Button>
             </Box>

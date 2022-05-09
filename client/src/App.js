@@ -12,6 +12,7 @@ import Navbar from "./components/NavBar";
 import AboutUs from "./views/AboutUs";
 
 import UserProfile from "./views/UserProfile";
+import Cart from "./views/Cart";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
           <Route path="/profile" element={<UserProfile />} />
           <Route path="/addProduct" element={<AddProduct />} />
           <Route path="/Home" element={<LandingPage />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
       </BrowserRouter>
     </div>
