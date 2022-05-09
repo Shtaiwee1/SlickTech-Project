@@ -42,7 +42,7 @@ function App() {
           <Route path="/profile" element={<UserProfile />} />
           <Route path='/addProduct' element={<AddProduct />}/>
           <Route path='/Home' element={<LandingPage />}/>
-          <Route path="products/:id" element={<ProductDetails />}/>
+          <Route path="products/:productId" element={<ProductDetails />}/>
         </Routes>
       </BrowserRouter>
     </div>

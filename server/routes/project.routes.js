@@ -5,6 +5,7 @@ const { authenticate } = require("../config/jwt.config");
 const { upload } = require("../config/multer.config");
 module.exports = function (app) {
   app.get("/api/reviews", authenticate, ReviewController.getAllReviews);
+  app.get("/api/getProductReviews", ReviewController.getProductReviews)
   app.post("/api/reviews", authenticate, ReviewController.createReview);
   app.put("/api/reviews/:id", authenticate, ReviewController.updateReview);
   app.delete("/api/reviews/:id", ReviewController.deleteReview);
@@ -28,4 +29,5 @@ module.exports = function (app) {
     ProductController.createProduct
   );
   app.get("/api/allProduct", ProductController.getAllProduct);
+  app.get('/api/products/:id', ProductController.getProduct);
 };

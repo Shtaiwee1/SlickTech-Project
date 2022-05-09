@@ -54,7 +54,7 @@ const Main = () => {
                                 <Typography variant="subtitle1" gutterBottom component="div">price:{product.price}</Typography>
                             </Box>
                             <Box padding={1}>
-                            <Button variant="contained">More Detail</Button>
+                            <Button variant="contained" onClick={() => navigate('/products/' + product._id)}>More Detail</Button>
                             </Box>
                             </Paper>
                         </Grid>
