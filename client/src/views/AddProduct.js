@@ -1,19 +1,17 @@
 import * as React from "react";
 import { useState } from "react";
 import { Form } from "react-bootstrap";
-import Avatar from "@mui/material/Avatar";
+
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
+
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import NavBar from "../components/NavBar";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -37,7 +35,6 @@ function Copyright(props) {
   );
 }
 
-const theme = createTheme();
 export default function SignUp() {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState(0);
@@ -77,10 +74,10 @@ export default function SignUp() {
     setImage(e.target.files[0]);
   };
   return (
-    <>
+    <div className="backimage">
       <NavBar />
       <div style={{ marginTop: "150px" }}>
-        <Container component="main" maxWidth="sm">
+        <Container component="main" maxWidth="xs">
           <CssBaseline />
           <Box
             sx={{
@@ -139,6 +136,22 @@ export default function SignUp() {
                     }}
                   />
                 </Grid>
+                {"title" in errors && (
+                  <Alert
+                    style={{ width: "400px", marginLeft: "14px" }}
+                    severity="error"
+                  >
+                    {errors.title.message}
+                  </Alert>
+                )}
+                {"price" in errors && (
+                  <Alert
+                    style={{ width: "400px", marginLeft: "14px" }}
+                    severity="error"
+                  >
+                    {errors.price.message}
+                  </Alert>
+                )}
                 <Grid item xs={12}>
                   <Form.Group controlId="formFileLg" className="mb-3">
                     <Form.Label className="float-start">
@@ -176,6 +189,6 @@ export default function SignUp() {
           <Copyright sx={{ mt: 5 }} />
         </Container>
       </div>
-    </>
+    </div>
   );
 }
