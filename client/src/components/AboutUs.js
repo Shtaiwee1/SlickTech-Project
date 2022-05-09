@@ -7,6 +7,7 @@ import CardSa from "./CardSa"
 import CardOd from "./CardOd.jsx"
 import {motion} from 'framer-motion'
 import Navbar from "../components/NavBar";
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -15,6 +16,7 @@ import Navbar from "../components/NavBar";
 
 
 const AboutUs = () => {
+  const navigate = useNavigate();
   return (
     <div style={{backgroundColor:'black'}}>
         <Navbar/>
@@ -40,11 +42,10 @@ const AboutUs = () => {
       >
         This project is an electronics e-commerce website, where users can surf a variety of tech-related products, add products to their carts, in addition to reviewing and rating these products where these reviews will be visible to other users. Users can also search for products, view their carts, and view their profiles.
       </Typography>
-      <Button   style={{backgroundColor:'#852EB8'}}
+      <Button onClick={() => navigate('/login_register')}   style={{backgroundColor:'#852EB8'}}
         variant="contained"
         size="large"
         component="a"
-        href="/login_register"
         sx={{ minWidth: 200 }}
       >
         Register

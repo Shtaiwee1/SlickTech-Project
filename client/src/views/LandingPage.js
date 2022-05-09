@@ -8,7 +8,15 @@ import '../style/card.css'
 import NavBar from '../components/NavBar';
 import { clear } from '@testing-library/user-event/dist/clear';
 import TextMobileStepper from '../components/TextMobileStepper';
+import { useNavigate } from 'react-router-dom';
+
+
+
+
+
+
 const Main = () => {
+    const navigate = useNavigate();
     return (
         <>
         <div style={{marginBottom:'70px'}}>
@@ -30,7 +38,7 @@ const Main = () => {
                 <Typography variant="subtitle1" gutterBottom component="div">price</Typography>
             </Box>
             <Box padding={1}>
-            <Button variant="contained">More Detail</Button>
+            <Button variant="contained" onClick={() => navigate('/products/:id')}>More Detail</Button>
             </Box>
             </Paper>
             </Grid>
@@ -45,7 +53,7 @@ const Main = () => {
                 <Typography variant="subtitle1" gutterBottom component="div">price</Typography>
             </Box>
             <Box padding={1}>
-            <Button variant="contained">More Detail</Button>
+            <Button variant="contained" onClick={() => navigate('/products/:id')}>More Detail</Button>
             </Box>
             </Paper>
             </Grid>
@@ -60,7 +68,7 @@ const Main = () => {
                 <Typography variant="subtitle1" gutterBottom component="div">price</Typography>
             </Box>
             <Box padding={1}>
-            <Button variant="contained">More Detail</Button>
+            <Button variant="contained" onClick={() => navigate('/products/:id')}>More Detail</Button>
             </Box>
             </Paper>
             </Grid>
@@ -75,7 +83,7 @@ const Main = () => {
                 <Typography variant="subtitle1" gutterBottom component="div">price</Typography>
             </Box>
             <Box padding={1}>
-            <Button variant="contained">More Detail</Button>
+            <Button variant="contained" onClick={() => navigate('/products/:id')}>More Detail</Button>
             </Box>
             </Paper>
             </Grid>
