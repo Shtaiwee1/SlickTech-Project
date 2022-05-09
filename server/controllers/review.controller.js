@@ -1,5 +1,5 @@
 const { Review } = require("../models/review.model");
-
+const jwt = require("jsonwebtoken");
 module.exports.index = (request, response) => {
   response.json({
     message: "Hello World",
@@ -7,16 +7,19 @@ module.exports.index = (request, response) => {
 };
 
 module.exports.createReview = (req, res) => {
-  Review.create(req.body)
+  const { rating, comment, productId } = req.body;
+  const { id } = jwt.verify(req.cookies.usertoken, "RKCFBuTGXi");
+  Review.create({ comment, rating, product: productId, user: id })
     .then((review) => res.json(review))
     .catch((err) => res.status(400).json(err));
 };
 
-module.exports.getAllReviews = (req, res) => {
-  Review.find({})
+module.exports.getUserReviews = (req, res) => {
+  const { id } = jwt.verify(req.cookies.usertoken, "RKCFBuTGXi");
+  Review.find({ user: id })
     .populate("user")
     .populate("product")
-    .sort("dueDate")
+    .sort("createdAt")
     .then((reviews) => res.json(reviews))
     .catch((err) => res.status(400).json(err));
 };

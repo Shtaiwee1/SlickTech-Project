@@ -21,7 +21,7 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path='/about_us' element={<AboutUs/>}/>
+          <Route path="/about_us" element={<AboutUs />} />
           <Route path="/login_register" element={<LoginRegister />} />
           <Route
             path="/"

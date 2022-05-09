@@ -1,8 +1,9 @@
-import * as React from 'react';
+import * as React from "react";
 import { useState } from "react";
 import { Form } from "react-bootstrap";
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
+import Alert from '@mui/material/Alert';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -19,17 +20,22 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
-    return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
-        {'Copyright © '}
-        <Link color="inherit" href="https://mui.com/">
-            Your Website
-        </Link>{' '}
-        {new Date().getFullYear()}
-        {'.'}
-        </Typography>
-    );
-    }
+  return (
+    <Typography
+      variant="body2"
+      color="text.secondary"
+      align="center"
+      {...props}
+    >
+      {"Copyright © "}
+      <Link color="inherit" href="https://mui.com/">
+        Your Website
+      </Link>{" "}
+      {new Date().getFullYear()}
+      {"."}
+    </Typography>
+  );
+}
 
     const theme = createTheme();
     export default function SignUp() {
@@ -51,7 +57,7 @@ function Copyright(props) {
         formData.append("price", price);
         formData.append("image", image);
         formData.append("desc", desc);
-
+        
         axios.post("http://localhost:8000/api/addProduct", formData, {
             withCredentials: true,
             headers: { "content-type": "multipart/form-data" },
@@ -62,7 +68,7 @@ function Copyright(props) {
         })
         .catch((err) => {
             console.log(err.response);
-            setErrors(err.response);
+            setErrors(err.response.data.errors);
         });
     };
 
@@ -70,85 +76,105 @@ function Copyright(props) {
         setImage(e.target.files[0]);
     };
     return (
-        <>
+        <div className='backimage'>
         <NavBar />
         <div style={{marginTop:'150px'}}>
         <Container component="main" maxWidth="xs">
-            <CssBaseline />
-            <Box
+          <CssBaseline />
+          <Box
             sx={{
-                marginTop: 8,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
+              marginTop: 8,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
             }}
-            >
+          >
             <Typography component="h1" variant="h5">
-                Add Product
+              Add Product
             </Typography>
-            <Box component="form"  onSubmit={handleSubmit} encType="multipart/form-data" sx={{ mt: 3 }}>
-                <Grid container spacing={2}>
+            <Box
+              component="form"
+              onSubmit={handleSubmit}
+              encType="multipart/form-data"
+              sx={{ mt: 3 }}
+            >
+              <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
-                    <TextField
+                  <TextField
                     value={title}
                     autoComplete="given-name"
                     name="Name Product"
                     required
                     fullWidth
                     id="Name Product"
-                    label="Name Product"
+                    label="Product Name"
                     autoFocus
-                    onChange={(e)=>{setTitle(e.target.value)}}
-                    />
+                    onChange={(e) => {
+                      setTitle(e.target.value);
+                    }}
+                  />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                    <TextField
+                  <TextField
                     required
                     fullWidth
                     value={price}
                     id="price"
-                    label="price"
+                    label="Price"
                     name="price"
                     autoComplete="enter price"
-                    onChange={(e)=>{setPrice(e.target.value)}}
-                    />
+                    onChange={(e) => {
+                      setPrice(e.target.value);
+                    }}
+                  />
                 </Grid>
+                {"title" in errors && (
+                                <Alert style={{width:'400px',marginLeft:'14px'}} severity="error">{errors.title.message}</Alert>
+                                )}
+                {"price" in errors && (
+                <Alert style={{width:'400px',marginLeft:'14px'}} severity="error">{errors.price.message}</Alert>
+                )}
                 <Grid item xs={12}>
-                    <Form.Group controlId="formFileLg" className="mb-3">
-                    <Form.Label className="float-start">Upload an image:</Form.Label>
+                  <Form.Group controlId="formFileLg" className="mb-3">
+                    <Form.Label className="float-start">
+                      Upload an image:
+                    </Form.Label>
                     <Form.Control
-                        type="file"
-                        name="image"
-                        size="lg"
-                        onChange={imageHandler}
+                      type="file"
+                      name="image"
+                      size="lg"
+                      onChange={imageHandler}
                     />
-                    </Form.Group>
+                  </Form.Group>
                 </Grid>
                 <Grid item xs={12}>
-                <TextareaAutosize
+                  <TextareaAutosize
                     value={desc}
                     aria-label="minimum height"
                     minRows={6}
                     placeholder="add description"
                     style={{ width: 400 }}
-                    onChange={(e)=>setDesc(e.target.value)}
-                    />
+                    onChange={(e) => setDesc(e.target.value)}
+                  />
                 </Grid>
+                {"desc" in errors && (
+                                <Alert style={{width:'400px',marginLeft:'14px'}} severity="error">{errors.desc.message}</Alert>
+                                )}
                 </Grid>
                 <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
-                >
+              >
                 Add Product
-                </Button>
+              </Button>
             </Box>
-            </Box>
-            <Copyright sx={{ mt: 5 }} />
+          </Box>
+          <Copyright sx={{ mt: 5 }} />
         </Container>
         </div>
-        </>
+        </div>
     );
     
 }

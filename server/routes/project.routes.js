@@ -6,6 +6,7 @@ const { upload } = require("../config/multer.config");
 module.exports = function (app) {
   app.get("/api/reviews", authenticate, ReviewController.getAllReviews);
   app.get("/api/getProductReviews", ReviewController.getProductReviews)
+  app.get("/api/getUserReviews", authenticate, ReviewController.getUserReviews);
   app.post("/api/reviews", authenticate, ReviewController.createReview);
   app.put("/api/reviews/:id", authenticate, ReviewController.updateReview);
   app.delete("/api/reviews/:id", ReviewController.deleteReview);
