@@ -60,7 +60,9 @@ const UserCard = () => {
             </Col>
           </Row>
           <Card.Body>
-            <Card.Title>User Name</Card.Title>
+            <Card.Title>
+              {user.firstName} {user.lastName}
+            </Card.Title>
             {loaded && (
               <UpdateUserForm
                 msg={msg}
