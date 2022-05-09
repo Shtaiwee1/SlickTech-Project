@@ -7,7 +7,6 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import '../style/card.css'
 import NavBar from '../components/NavBar';
-import { clear } from '@testing-library/user-event/dist/clear';
 import TextMobileStepper from '../components/TextMobileStepper';
 import { useNavigate } from 'react-router-dom';
 

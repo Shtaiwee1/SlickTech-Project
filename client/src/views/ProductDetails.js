@@ -2,25 +2,23 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { useParams } from "react-router-dom";
 import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Navbar from '../components/NavBar'
-import {Button , Typography , Grid , Rating} from '@mui/material';
+import {Button , Typography , Rating} from '@mui/material';
 import ReviewForm from '../views/ReviewForm'
 import ReviewList from '../views/ReviewList'
 
     
-const Detail = (props) => {
+const Detail = () => {
     const [product, setProduct] = useState({})
     const { productId } = useParams();
-    const navigate = useNavigate();
     const [reviews, setReviews] = useState([]);
     
     useEffect(() => {
         axios.get('http://localhost:8000/api/products/' + productId  , {withCredentials: true} )
             .then(res => setProduct(res.data))
             .catch(err => console.error(err));
-    }, []);
+    }, [productId]);
 
     useEffect(()=>{
         axios.get('http://localhost:8000/api/getProductReviews'  , {productId} , {withCredentials: true} )
@@ -29,7 +27,7 @@ const Detail = (props) => {
                 
             })
             .catch(err => console.error(err));
-    },[]);
+    },[productId]);
 
 
     const createReview = review => {
