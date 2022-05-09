@@ -1,4 +1,5 @@
-import * as React from 'react';
+import  React ,{useState,useEffect}  from 'react';
+import axios  from 'axios';
 import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material/styles';
 import MobileStepper from '@mui/material/MobileStepper';
@@ -32,7 +33,19 @@ const steps = [
 export default function TextMobileStepper() {
 const theme = useTheme();
 const [activeStep, setActiveStep] = React.useState(0);
-const maxSteps = steps.length;
+const [product, setProduct] = useState([]);
+const [loaded, setLoaded] = useState(false);
+const maxSteps = product.length;
+    useEffect(() => {
+    axios
+        .get("http://localhost:8000/api/allProduct")
+        .then((res) => {
+        setProduct(res.data);
+        setLoaded(true);
+        console.log(res.data);
+        })
+        .catch((err) => console.log(err));
+    }, []);
 
 const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -60,15 +73,19 @@ return (
     // <Box sx={{ height: 255, maxWidth: 600, width: '100%', p: 2 }}>
     //     {steps[activeStep].description}
     // </Box>
+    <>
+    {
+        loaded && (
+    
     <Box sx={{ maxWidth: 600, flexGrow: 1 }}>
     <Paper>
-    <img src="https://images.ctfassets.net/hrltx12pl8hq/2TRIFRwcjrTuNprkTQHVxs/088159eb8e811aaac789c24701d7fdb1/LP_image.jpg?fit=fill&w=632&h=354&fm=webp" 
+    <img src={ require("../images/" +product[activeStep].image )}
     alt='ff' className='imgCard' style={{height:'300px'}}></img>
     <Box paddingX={1}>
-        <Typography variant="subtitle1" gutterBottom component="div">product name:{steps[activeStep].description}</Typography>
+        <Typography variant="subtitle1" gutterBottom component="div">product name:{product[activeStep].title}</Typography>
     </Box>
     <Box padding={1}>
-        <Typography variant="subtitle1" gutterBottom component="div">price</Typography>
+        <Typography variant="subtitle1" gutterBottom component="div">price:{product[activeStep].price}</Typography>
     </Box>
     <Box padding={1}>
     <Button variant="contained">More Detail</Button>
@@ -105,5 +122,7 @@ return (
         }
     />
     </Box>
+    )}
+    </>
 );
 }
