@@ -6,7 +6,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginRegister from "./views/LoginRegister";
 import PrivateRoute from "./components/PrivateRoute";
 import ProjectForm from "./views/ProjectForm";
+import AddProduct from "./views/AddProduct";
 import Navbar from "./components/NavBar";
+import AboutUs from "./components/AboutUs"
 
 import UserProfile from "./views/UserProfile";
 
@@ -16,6 +18,7 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
+          <Route path='/about_us' element={<AboutUs/>}/>
           <Route path="/login_register" element={<LoginRegister />} />
           <Route
             path="/"
@@ -34,6 +37,7 @@ function App() {
             }
           />
           <Route path="/profile" element={<UserProfile />} />
+          <Route path='/addProduct' element={<AddProduct />}/>
         </Routes>
       </BrowserRouter>
     </div>
