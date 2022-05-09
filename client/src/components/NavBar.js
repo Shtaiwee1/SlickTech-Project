@@ -30,7 +30,7 @@ export const MuiNavbar = () => {
               fontWeight: "600",
               fontSize: "18px",
             }}
-            to="/home"
+            to="/Home"
           >
             Home
           </Link>

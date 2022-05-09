@@ -7,6 +7,7 @@ import LoginRegister from "./views/LoginRegister";
 import PrivateRoute from "./components/PrivateRoute";
 import ProjectForm from "./views/ProjectForm";
 import AddProduct from "./views/AddProduct";
+import LandingPage from "./views/LandingPage";
 import Navbar from "./components/NavBar";
 import AboutUs from "./components/AboutUs"
 
@@ -38,6 +39,7 @@ function App() {
           />
           <Route path="/profile" element={<UserProfile />} />
           <Route path='/addProduct' element={<AddProduct />}/>
+          <Route path='/Home' element={<LandingPage />}/>
         </Routes>
       </BrowserRouter>
     </div>
