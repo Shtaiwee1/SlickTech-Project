@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginRegister from "./views/LoginRegister";
 import PrivateRoute from "./components/PrivateRoute";
 import ProjectForm from "./views/ProjectForm";
+import AddProduct from "./views/AddProduct";
 import Navbar from "./components/NavBar";
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
               </PrivateRoute>
             }
           />
+          <Route path='/addProduct' element={<AddProduct />}/>
         </Routes>
       </BrowserRouter>
     </div>
