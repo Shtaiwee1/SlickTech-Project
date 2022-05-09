@@ -9,7 +9,7 @@ import ProjectForm from "./views/ProjectForm";
 import AddProduct from "./views/AddProduct";
 import LandingPage from "./views/LandingPage";
 import Navbar from "./components/NavBar";
-import AboutUs from "./components/AboutUs"
+import AboutUs from "./views/AboutUs";
 
 import UserProfile from "./views/UserProfile";
 
@@ -19,7 +19,7 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path='/about_us' element={<AboutUs/>}/>
+          <Route path="/about_us" element={<AboutUs />} />
           <Route path="/login_register" element={<LoginRegister />} />
           <Route
             path="/"
@@ -38,8 +38,8 @@ function App() {
             }
           />
           <Route path="/profile" element={<UserProfile />} />
-          <Route path='/addProduct' element={<AddProduct />}/>
-          <Route path='/Home' element={<LandingPage />}/>
+          <Route path="/addProduct" element={<AddProduct />} />
+          <Route path="/Home" element={<LandingPage />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -81,7 +81,11 @@ const UpdateUserForm = (props) => {
 
   return (
     <>
-      {msg && <Alert severity="success">{msg}</Alert>}
+      {msg && (
+        <Alert className="mb-3" severity="success">
+          {msg}
+        </Alert>
+      )}
       <Form onSubmit={submitHandler} encType="multipart/form-data">
         <Row>
           <Col xs={12} md={6}>
@@ -108,7 +112,7 @@ const UpdateUserForm = (props) => {
               fullWidth
             />
           </Col>
-          <Col xs={12} md={6}>
+          <Col>
             {"lastName" in errors && (
               <Alert severity="error">{errors.lastName.message}</Alert>
             )}
@@ -132,7 +136,7 @@ const UpdateUserForm = (props) => {
           </Col>
         </Row>
         <Row>
-          <Col>
+          <Col xs={12} md={6}>
             {"email" in errors && (
               <Alert severity="error">{errors.email.message}</Alert>
             )}
