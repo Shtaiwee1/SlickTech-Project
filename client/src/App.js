@@ -8,6 +8,8 @@ import PrivateRoute from "./components/PrivateRoute";
 import ProjectForm from "./views/ProjectForm";
 import Navbar from "./components/NavBar";
 
+import UserProfile from "./views/UserProfile";
+
 function App() {
   return (
     <div className="App">
@@ -31,6 +33,7 @@ function App() {
               </PrivateRoute>
             }
           />
+          <Route path="/profile" element={<UserProfile />} />
         </Routes>
       </BrowserRouter>
     </div>

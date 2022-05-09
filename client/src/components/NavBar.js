@@ -1,6 +1,7 @@
 import React from "react";
 import { AppBar, IconButton, Toolbar, Stack, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+
 import { useLocation } from "react-router-dom";
 
 export const MuiNavbar = () => {
@@ -13,7 +14,7 @@ export const MuiNavbar = () => {
             src={require("../images/logo-medium.png")}
             height={40}
             width={145}
-            alt="Logo"
+            alt=""
           />
         </IconButton>
         <Typography

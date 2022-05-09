@@ -101,6 +101,32 @@ module.exports.login = async (req, res) => {
     .json({ msg: "success!" });
 };
 
+module.exports.updateUser = (req, res) => {
+  const { id } = jwt.verify(req.cookies.usertoken, "RKCFBuTGXi");
+  const { firstName, lastName, email, address } = req.body;
+  console.log(id);
+  console.log(req.body);
+  let imageFile = "";
+  if (req.file) {
+    imageFile = req.file.filename;
+  }
+  User.findOneAndUpdate(
+    {
+      _id: id,
+    },
+    {
+      firstName,
+      lastName,
+      email,
+      address,
+      image: imageFile,
+    },
+    { new: true, runValidators: true }
+  )
+    .then((updatedUser) => res.json({ updatedUser, msg: "Update Successful!" }))
+    .catch((err) => res.status(400).send(err));
+};
+
 module.exports.logout = (req, res) => {
   res.clearCookie("usertoken");
   res.sendStatus(200);
@@ -109,8 +135,9 @@ module.exports.logout = (req, res) => {
 module.exports.checkLogIn = async (req, res) => {
   if ("usertoken" in req.cookies) {
     const { id } = jwt.verify(req.cookies.usertoken, "RKCFBuTGXi");
-    const { firstName, lastName, isAdmin } = await User.findOne({ _id: id });
-    res.json({ firstName, lastName, isAdmin });
+    const { firstName, lastName, email, address, image, isAdmin } =
+      await User.findOne({ _id: id });
+    res.json({ firstName, lastName, email, address, isAdmin, image });
   } else {
     res.json({});
   }

@@ -12,6 +12,11 @@ module.exports = function (app) {
   // User Routes
   app.post("/api/register", upload.single("image"), UserController.register);
   app.post("/api/login", UserController.login);
+  app.put(
+    "/api/updateProfile",
+    upload.single("image"),
+    UserController.updateUser
+  );
   app.get("/api/logout", UserController.logout);
   app.get("/api/check_login", UserController.checkLogIn);
   app.put("/api/addToCart", UserController.addToCart);
