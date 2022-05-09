@@ -39,6 +39,7 @@ const UserSchema = new mongoose.Schema(
     image: {
       type: String,
     },
+    cart: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
   },
   { timestamps: true }
 );

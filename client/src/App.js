@@ -8,6 +8,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import ProjectForm from "./views/ProjectForm";
 import AddProduct from "./views/AddProduct";
 import Navbar from "./components/NavBar";
+import AboutUs from "./components/AboutUs"
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
+          <Route path='/about_us' element={<AboutUs/>}/>
           <Route path="/login_register" element={<LoginRegister />} />
           <Route
             path="/"
