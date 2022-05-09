@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Form } from "react-bootstrap";
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
+import Alert from '@mui/material/Alert';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -51,7 +52,7 @@ function Copyright(props) {
         formData.append("price", price);
         formData.append("image", image);
         formData.append("desc", desc);
-
+        
         axios.post("http://localhost:8000/api/addProduct", formData, {
             withCredentials: true,
             headers: { "content-type": "multipart/form-data" },
@@ -62,7 +63,7 @@ function Copyright(props) {
         })
         .catch((err) => {
             console.log(err.response);
-            setErrors(err.response);
+            setErrors(err.response.data.errors);
         });
     };
 
@@ -70,7 +71,7 @@ function Copyright(props) {
         setImage(e.target.files[0]);
     };
     return (
-        <>
+        <div className='backimage'>
         <NavBar />
         <div style={{marginTop:'150px'}}>
         <Container component="main" maxWidth="xs">
@@ -113,6 +114,12 @@ function Copyright(props) {
                     onChange={(e)=>{setPrice(e.target.value)}}
                     />
                 </Grid>
+                {"title" in errors && (
+                                <Alert style={{width:'400px',marginLeft:'14px'}} severity="error">{errors.title.message}</Alert>
+                                )}
+                {"price" in errors && (
+                <Alert style={{width:'400px',marginLeft:'14px'}} severity="error">{errors.price.message}</Alert>
+                )}
                 <Grid item xs={12}>
                     <Form.Group controlId="formFileLg" className="mb-3">
                     <Form.Label className="float-start">Upload an image:</Form.Label>
@@ -134,6 +141,9 @@ function Copyright(props) {
                     onChange={(e)=>setDesc(e.target.value)}
                     />
                 </Grid>
+                {"desc" in errors && (
+                                <Alert style={{width:'400px',marginLeft:'14px'}} severity="error">{errors.desc.message}</Alert>
+                                )}
                 </Grid>
                 <Button
                 type="submit"
@@ -148,7 +158,7 @@ function Copyright(props) {
             <Copyright sx={{ mt: 5 }} />
         </Container>
         </div>
-        </>
+        </div>
     );
     
 }
