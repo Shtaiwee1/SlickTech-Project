@@ -1,10 +1,10 @@
 import React from "react";
 import { Button, Typography, Grid } from "@mui/material";
-import ProductHeroLayout from "./ProductHeroLayout";
+import ProductHeroLayout from "../components/ProductHeroLayout";
 import video from "../Videos/tech.mp4";
-import CardMo from "./CardMo";
-import CardSa from "./CardSa";
-import CardOd from "./CardOd.jsx";
+import CardMo from "../components/CardMo";
+import CardSa from "../components/CardSa";
+import CardOd from "../components/CardOd";
 import { motion } from "framer-motion";
 import Navbar from "../components/NavBar";
 import { useNavigate } from "react-router-dom";
