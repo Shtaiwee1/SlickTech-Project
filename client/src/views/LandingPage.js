@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import '../style/card.css'
-import { Card, Row, Col,form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import NavBar from '../components/NavBar';
 import TextMobileStepper from '../components/TextMobileStepper';
 import { useNavigate } from 'react-router-dom';
@@ -40,11 +40,11 @@ const Main = () => {
             <TextMobileStepper />
         </div>
         <div>
-            <form>
-                <div className='form-group'>
-                    <input onChange={e=>setName(e.target.value)} type='text' placeholder='search' style={{width:'600px',borderRadius:'5px'}}/>
+            <Form>
+                <div className='form-group' style={{display:'flex',justifyContent:'center'}}>
+                    <Form.Control onChange={e=>setName(e.target.value)} type='text' placeholder='search' style={{margin:'4px',width:'600px',borderRadius:'5px'}}/>
                 </div>
-            </form>
+            </Form>
         </div>
         <div style={{margin:'1px',display:'clear',marginTop:'30px'}}>
         <Grid container spacing={3} style={{margin:'4px'}}>
