@@ -1,4 +1,4 @@
-import React , {Component} from 'react';
+import React  from 'react';
 import {Button , Typography , Grid} from '@mui/material';
 import ProductHeroLayout from './ProductHeroLayout';
 import video from "../Videos/tech.mp4"

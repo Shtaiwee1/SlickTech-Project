@@ -1,11 +1,10 @@
-import Main from "./views/Main";
 import "./App.css";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import LoginRegister from "./views/LoginRegister";
 import PrivateRoute from "./components/PrivateRoute";
-import ProjectForm from "./views/ProjectForm";
+import AdminRoute from "./components/AdminRoute";
 import AddProduct from "./views/AddProduct";
 import LandingPage from "./views/LandingPage";
 import Navbar from "./components/NavBar";
@@ -24,32 +23,75 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
+          {/* Public Routes */}
+
           <Route path="/about_us" element={<AboutUs />} />
           <Route path="/login_register" element={<LoginRegister />} />
-          <Route
-            path="/"
-            element={
-              <PrivateRoute>
-                <Main />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/projects/new"
-            element={
-              <PrivateRoute>
-                <ProjectForm />
-              </PrivateRoute>
-            }
-          />
-          <Route path="/profile" element={<UserProfile />} />
-          <Route path="/addProduct" element={<AddProduct />} />
+          <Route path="/" element={<Navigate to="/home" />} />
           <Route path="/home" element={<LandingPage />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="products/:productId" element={<ProductDetails />} />
-          <Route path="/chat" element={<ChatPage />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/products/:productId/edit" element={<EditProduct />} />
+
+          {/* Private Routes */}
+
+          <Route
+            path="/profile"
+            element={
+              <PrivateRoute>
+                <UserProfile />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/cart"
+            element={
+              <PrivateRoute>
+                <Cart />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="products/:productId"
+            element={
+              <PrivateRoute>
+                <ProductDetails />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/chat"
+            element={
+              <PrivateRoute>
+                <ChatPage />
+              </PrivateRoute>
+            }
+          />
+
+          {/* Admin Routes */}
+
+          <Route
+            path="/addProduct"
+            element={
+              <AdminRoute>
+                <AddProduct />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/dashboard"
+            element={
+              <AdminRoute>
+                <Dashboard />
+              </AdminRoute>
+            }
+          />
+          <Route
+            path="/products/:productId/edit"
+            element={
+              <AdminRoute>
+                <EditProduct />
+              </AdminRoute>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </div>
