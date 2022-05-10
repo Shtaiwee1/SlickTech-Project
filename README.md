@@ -42,6 +42,8 @@ This project is an electronics e-commerce website, where users can surf a variet
 
 **screenshot**
 -	Login/Registration Page.
+
+![My Image](https://github.com/Shtaiwee1/Project_services2/blob/master/Capture6.PNG)
 -	Main Page.
 -	Product Details Page.
 -	Cart Page.
