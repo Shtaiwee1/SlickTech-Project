@@ -4,8 +4,9 @@ This project is an electronics e-commerce website, where users can surf a variet
 **About us:**
 1. Odai Sheikh
 2-	Mohammad Omair.
-3.Sanad Abu Shama.
-**Technologies and languages**
+3.Sanad Abu Shama.  
+
+**Technologies and languages:**
 - HTML
 - CSS
 - JavaScript
@@ -21,7 +22,8 @@ This project is an electronics e-commerce website, where users can surf a variet
 - Socket.io
 -	Axios
 
-**Requirements:**
+**Requirements:**  
+
 1-	Authentication and authorization through a login/registration page, where users can create accounts or login to existing accounts. Both forms contain front end and back end validations. Users can be admins or normal users.
 
 2-	The main page will display the top products, in addition to search feature, which users can use to search for desired products.
@@ -40,7 +42,7 @@ This project is an electronics e-commerce website, where users can surf a variet
 
 9-	About us page that displays an overview of the project with information about the creators.
 
-**screenshot**
+**Screenshots:**
 # Login/Registration Page:
 ![My Image](https://github.com/odaisheikh/SlickTech-Project/blob/master/ReadMeImages/log_reg.PNG)
 
@@ -66,6 +68,8 @@ This project is an electronics e-commerce website, where users can surf a variet
 # Admin dashboard:
 ![My Image](https://github.com/odaisheikh/SlickTech-Project/blob/master/ReadMeImages/Admin%20dashboard.PNG)
 
+# Edit Product Page:
+![My Image](https://github.com/odaisheikh/SlickTech-Project/blob/master/ReadMeImages/Admin%20dashboard.PNG)
 
 # About Us Page:
 ![My Image](https://github.com/odaisheikh/SlickTech-Project/blob/master/ReadMeImages/Aboutus.PNG)
