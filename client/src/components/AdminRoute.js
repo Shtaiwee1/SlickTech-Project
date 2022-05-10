@@ -23,7 +23,7 @@ const AdminRoute = ({ children }) => {
       });
   }, []);
 
-  return <>{loaded && (user.isAdmin ? children : <Navigate to="/" />)}</>;
+  return <>{loaded && (user.isAdmin ? children : <Navigate to="/home" />)}</>;
 };
 
 export default AdminRoute;

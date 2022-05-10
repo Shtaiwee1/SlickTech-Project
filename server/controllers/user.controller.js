@@ -132,6 +132,14 @@ module.exports.logout = (req, res) => {
   res.sendStatus(200);
 };
 
+module.exports.getAllUsers = (req, res) => {
+  User.find({})
+    .populate("cart")
+    .sort("createdAt")
+    .then((users) => res.json(users))
+    .catch((err) => res.status(400).json(err));
+};
+
 module.exports.checkLogIn = async (req, res) => {
   if ("usertoken" in req.cookies) {
     const { id } = jwt.verify(req.cookies.usertoken, "RKCFBuTGXi");

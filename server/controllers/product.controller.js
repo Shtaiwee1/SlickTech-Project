@@ -23,7 +23,24 @@ module.exports.getAllProduct = (req, res) => {
 };
 
 module.exports.getProduct = (request, response) => {
-  Product.findOne({_id:request.params.id})
-      .then(product => response.json(product))
-      .catch(err => response.json(err))
-}
+  Product.findOne({ _id: request.params.id })
+    .then((product) => response.json(product))
+    .catch((err) => response.json(err));
+};
+
+module.exports.updateProduct = (req, res) => {
+  const { id } = req.params;
+  let imageFile = "";
+  if (req.file) {
+    imageFile = req.file.filename;
+  }
+  Product.findOneAndUpdate(
+    {
+      _id: id,
+    },
+    { ...req.body, image: imageFile },
+    { new: true, runValidators: true }
+  )
+    .then((updatedProduct) => res.json(updatedProduct))
+    .catch((err) => res.status(400).send(err));
+};

@@ -6,34 +6,14 @@ import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 
-import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import Container from "@mui/material/Container";
-import NavBar from "../components/NavBar";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Alert } from "@mui/material";
-
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
 
 export default function SignUp() {
   const [title, setTitle] = useState("");
@@ -73,9 +53,9 @@ export default function SignUp() {
   const imageHandler = (e) => {
     setImage(e.target.files[0]);
   };
+
   return (
     <div className="backimage">
-      <NavBar />
       <div style={{ marginTop: "150px" }}>
         <Container component="main" maxWidth="xs">
           <CssBaseline />
@@ -136,22 +116,6 @@ export default function SignUp() {
                     }}
                   />
                 </Grid>
-                {"title" in errors && (
-                  <Alert
-                    style={{ width: "400px", marginLeft: "14px" }}
-                    severity="error"
-                  >
-                    {errors.title.message}
-                  </Alert>
-                )}
-                {"price" in errors && (
-                  <Alert
-                    style={{ width: "400px", marginLeft: "14px" }}
-                    severity="error"
-                  >
-                    {errors.price.message}
-                  </Alert>
-                )}
                 <Grid item xs={12}>
                   <Form.Group controlId="formFileLg" className="mb-3">
                     <Form.Label className="float-start">
@@ -175,7 +139,7 @@ export default function SignUp() {
                     value={desc}
                     aria-label="minimum height"
                     minRows={6}
-                    placeholder="add description"
+                    placeholder="Description"
                     style={{ width: 400 }}
                     onChange={(e) => setDesc(e.target.value)}
                   />
@@ -186,7 +150,6 @@ export default function SignUp() {
               </Button>
             </Box>
           </Box>
-          <Copyright sx={{ mt: 5 }} />
         </Container>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import  React ,{useState,useEffect}  from 'react';
 import axios  from 'axios';
+import { Alert } from '@mui/material';
 import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material/styles';
 import MobileStepper from '@mui/material/MobileStepper';
@@ -55,22 +56,25 @@ return (
     // </Box>
     <>
     {
-        loaded && (
+        loaded &&  (
     
     <Box sx={{ maxWidth: 600, flexGrow: 1 }}>
-    <Paper>
-    <img src={ require("../images/" +product[activeStep].image )}
-    alt='ff' className='imgCard' style={{height:'300px'}}></img>
+        {product.length !==0 && <Paper>
+        {product[activeStep].image && <img src={ require("../images/" + product[activeStep].image )}
+        alt='ff' className='imgCard' style={{height:'300px'}}></img>}
+        {!product[activeStep].image && <img src={ require("../images/productPlaceholder.jpg" )}
+        alt='ff' className='imgCard' style={{height:'300px'}}></img>}
     <Box paddingX={1}>
-        <Typography variant="subtitle1" gutterBottom component="div">product name:{product[activeStep].title}</Typography>
+        <Typography variant="subtitle1" gutterBottom component="div">{product[activeStep].title}</Typography>
     </Box>
     <Box padding={1}>
-        <Typography variant="subtitle1" gutterBottom component="div">price:{product[activeStep].price}</Typography>
+        <Typography variant="subtitle1" gutterBottom component="div">Price: ${product[activeStep].price}</Typography>
     </Box>
     <Box padding={1}>
     <Button variant="contained">More Detail</Button>
     </Box>
-    </Paper>
+    </Paper>}
+    {product.length ===0 && <Alert severity="error" >We don't have any products at the moment!</Alert>}
     <MobileStepper
         variant="text"
         steps={maxSteps}

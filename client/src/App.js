@@ -12,9 +12,11 @@ import Navbar from "./components/NavBar";
 import AboutUs from "./components/AboutUs";
 import ProductDetails from "./views/ProductDetails";
 import "./components/FontawesomeIcons";
-
+import ChatPage from "./views/ChatPage";
 import UserProfile from "./views/UserProfile";
 import Cart from "./views/Cart";
+import Dashboard from "./views/Dashboard";
+import EditProduct from "./views/EditProduct";
 
 function App() {
   return (
@@ -42,9 +44,12 @@ function App() {
           />
           <Route path="/profile" element={<UserProfile />} />
           <Route path="/addProduct" element={<AddProduct />} />
-          <Route path="/Home" element={<LandingPage />} />
+          <Route path="/home" element={<LandingPage />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="products/:productId" element={<ProductDetails />} />
+          <Route path="/chat" element={<ChatPage />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/products/:productId/edit" element={<EditProduct />} />
         </Routes>
       </BrowserRouter>
     </div>
