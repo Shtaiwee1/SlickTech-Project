@@ -8,6 +8,7 @@ import Button from "@mui/material/Button";
 import "../style/card.css";
 import { Form } from "react-bootstrap";
 
+<<<<<<< HEAD
 import TextMobileStepper from "../components/TextMobileStepper";
 import { useNavigate } from "react-router-dom";
 
@@ -112,6 +113,65 @@ const Main = () => {
                   </Grid>
                 );
               })}
+=======
+const Main = () => {
+    const navigate = useNavigate();
+    const [product, setProduct] = useState([]);
+    const [loaded, setLoaded] = useState(false);
+    const [name, setName] = useState("");
+    useEffect(() => {
+        axios
+            .get("http://localhost:8000/api/allProduct")
+            .then((res) => {
+            setProduct(res.data);
+            setLoaded(true);
+            console.log(res.data);
+            })
+            .catch((err) => console.log(err));
+        }, []);
+    return (
+        <>
+        <div style={{marginBottom:'70px'}}>
+        <NavBar />
+        </div>
+        <div style={{display:'flex',justifyContent:'center'}}>
+            <TextMobileStepper />
+        </div>
+        <div>
+            <Form>
+                <div className='form-group' style={{display:'flex',justifyContent:'center'}}>
+                    <Form.Control onChange={e=>setName(e.target.value)} type='text' placeholder='search' style={{margin:'4px',width:'600px',borderRadius:'5px'}}/>
+                </div>
+            </Form>
+        </div>
+        <div style={{margin:'1px',display:'clear',marginTop:'30px'}}>
+        <Grid container spacing={3} style={{margin:'4px'}}>
+        {loaded && (
+                product.filter((item,idx)=>{
+                    return(
+                        item.title.includes(name)
+                    )
+                }).map((product, index)=>{
+                    return (<Grid key={index} xs={3}  style={{marginTop:'4px'}}>
+                        <Grid spacing={3} style={{margin:'7px'}}>
+                            <Paper>
+                            <img src={require("../images/"+product.image)}
+                            alt='ff' className='imgCard' style={{height:'250px'}}></img>
+                            <Box paddingX={1}>
+                                <Typography variant="subtitle1" gutterBottom component="div">Product Name: {product.title}</Typography>
+                            </Box>
+                            <Box padding={1}>
+                                <Typography variant="subtitle1" gutterBottom component="div">Price:{product.price} $</Typography>
+                            </Box>
+                            <Box padding={1}>
+                            <Button variant="contained" onClick={() => navigate('/products/' + product._id)}>More Detail</Button>
+                            </Box>
+                            </Paper>
+                        </Grid>
+                    </Grid>)
+                })
+        )} 
+>>>>>>> b072cfce5a2a906293f6bd84a76184d1b4f16568
         </Grid>
       </div>
     </>
