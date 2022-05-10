@@ -1,54 +1,28 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-<<<<<<< HEAD
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Navbar from "../components/NavBar";
 import { Button, Typography, Rating } from "@mui/material";
 import ReviewForm from "../views/ReviewForm";
 import ReviewList from "../views/ReviewList";
-=======
-import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Navbar from '../components/NavBar'
-import {Button , Typography , Rating} from '@mui/material';
-import ReviewForm from '../views/ReviewForm'
-import ReviewList from '../views/ReviewList'
 import { io } from "socket.io-client";
->>>>>>> b072cfce5a2a906293f6bd84a76184d1b4f16568
 
 const Detail = () => {
-<<<<<<< HEAD
   const [product, setProduct] = useState({});
   const { productId } = useParams();
   const [reviews, setReviews] = useState([]);
   const [loaded, setLoaded] = useState(false);
-=======
-    const [product, setProduct] = useState({})
-    const { productId } = useParams();
-    const [reviews, setReviews] = useState([]);
-<<<<<<< HEAD
-    const [socket , setSocket]=useState(null);
-=======
-    const [loaded , setLoaded] = useState(false);
 
-    
->>>>>>> ae4645556dee3dafd73fb7e3d4878e80378e2072
-    
-    useEffect(
-        ()=>{
-            const socket= io('http://localhost:5000')
-            console.log(socket.on('first-message',(msg)=>{
-                console.log(msg)
-                
-            }))
-        },[]
-    )
-    useEffect(() => {
-        axios.get('http://localhost:8000/api/products/' + productId  , {withCredentials: true} )
-            .then(res => {setProduct(res.data);
-            setLoaded(true)  })
->>>>>>> b072cfce5a2a906293f6bd84a76184d1b4f16568
+  useEffect(() => {
+    const socket = io("http://localhost:5000");
+    console.log(
+      socket.on("first-message", (msg) => {
+        console.log(msg);
+      })
+    );
+  }, []);
 
   useEffect(() => {
     axios
@@ -103,14 +77,20 @@ const Detail = () => {
         }}
       >
         <div style={{ width: "30%", height: "25rem" }}>
-          {loaded && (
+          {loaded && product.image && (
             <img
-              src={require("../images/" + product.image)}
-              alt="ff"
-              className="imgCard"
-              style={{ height: "100%", width: "100%" }}
-            ></img>
+            src={require("../images/" + product.image)}
+            alt="ff"
+            className="imgCard"
+            style={{ height: "100%", width: "100%" }}
+          ></img>
           )}
+          {loaded && !product.image &&  (<img
+            src={require("../images/productPlaceholder.jpg")}
+            alt="ff"
+            className="imgCard"
+            style={{ height: "100%", width: "100%" }}
+          ></img>) }
         </div>
         <div
           style={{

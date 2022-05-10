@@ -191,3 +191,16 @@ module.exports.getCart = async (req, res) => {
     .then((user) => res.json(user.cart))
     .catch((err) => res.status(400).send(err));
 };
+
+module.exports.makeAdmin = (req, res) => {
+  const { userId } = req.body;
+  User.findOneAndUpdate(
+    {
+      _id: userId,
+    },
+    { isAdmin: true },
+    { new: true, runValidators: true }
+  )
+    .then((updatedUser) => res.json(updatedUser))
+    .catch((err) => res.status(400).send(err));
+};

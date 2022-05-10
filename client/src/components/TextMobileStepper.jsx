@@ -9,13 +9,16 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-
+import { useNavigate } from 'react-router-dom';
 
 export default function TextMobileStepper() {
 const theme = useTheme();
 const [activeStep, setActiveStep] = React.useState(0);
 const [product, setProduct] = useState([]);
 const [loaded, setLoaded] = useState(false);
+const navigate = useNavigate();
+
+
 const maxSteps = product.length;
     useEffect(() => {
     axios
@@ -65,20 +68,13 @@ return (
         {!product[activeStep].image && <img src={ require("../images/productPlaceholder.jpg" )}
         alt='ff' className='imgCard' style={{height:'300px'}}></img>}
     <Box paddingX={1}>
-<<<<<<< HEAD
         <Typography variant="subtitle1" gutterBottom component="div">{product[activeStep].title}</Typography>
     </Box>
     <Box padding={1}>
         <Typography variant="subtitle1" gutterBottom component="div">Price: ${product[activeStep].price}</Typography>
-=======
-        <Typography variant="subtitle1" gutterBottom component="div">Product Name:{product[activeStep].title}</Typography>
     </Box>
     <Box padding={1}>
-        <Typography variant="subtitle1" gutterBottom component="div">Price:{product[activeStep].price} $</Typography>
->>>>>>> b072cfce5a2a906293f6bd84a76184d1b4f16568
-    </Box>
-    <Box padding={1}>
-    <Button variant="contained">More Detail</Button>
+    <Button variant="contained" onClick={()=>navigate("/products/" + product[activeStep]._id )}>More Detail</Button>
     </Box>
     </Paper>}
     {product.length ===0 && <Alert severity="error" >We don't have any products at the moment!</Alert>}

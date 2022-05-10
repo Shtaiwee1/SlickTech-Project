@@ -1,12 +1,12 @@
 import React from "react";
-import { Table } from "react-bootstrap";
-import { Button } from "@mui/material";
+import { Table, Button } from "react-bootstrap";
+
 import { Link } from "react-router-dom";
 
 const UsersTable = (props) => {
   const { products } = props;
   return (
-    <Table striped bordered hover variant="dark">
+    <Table striped bordered hover variant="dark" responsive>
       <thead>
         <tr>
           <th>Product Name</th>
@@ -21,12 +21,7 @@ const UsersTable = (props) => {
             <th>{product.price}</th>
             <th>
               <Link to={"/products/" + product._id + "/edit"}>
-                <Button
-                  color="success"
-                  size="small"
-                  className="me-2"
-                  variant="contained"
-                >
+                <Button variant="success" className="me-2">
                   Edit
                 </Button>
               </Link>

@@ -9,6 +9,30 @@ const Dashboard = () => {
   const [products, setProducts] = useState([]);
   const [loadedProducts, setLoadedProducts] = useState(false);
 
+  const makeAdmin = (id) => {
+    axios
+      .put(
+        "http://localhost:8000/api/makeAdmin",
+        { userId: id },
+        {
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        setUsers(
+          users.map((user) => {
+            if (user._id === id) {
+              return res.data;
+            }
+            return user;
+          })
+        );
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  };
+
   useEffect(() => {
     axios
       .get("http://localhost:8000/api/getAllUsers", {
@@ -40,9 +64,9 @@ const Dashboard = () => {
   return (
     <Container className="my-5">
       <Row className="justify-content-center">
-        <Col xs={12} md={8}>
+        <Col xs={12} md={10}>
           <Row className="my-5">
-            {loadedUsers && <UsersTable users={users} />}
+            {loadedUsers && <UsersTable makeAdmin={makeAdmin} users={users} />}
           </Row>
           <Row>{loadedProducts && <ProductsTable products={products} />}</Row>
         </Col>
