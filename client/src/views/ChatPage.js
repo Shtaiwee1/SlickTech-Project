@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import io from "socket.io-client";
+
 import axios from "axios";
 
 import Chat from "../components/Chat";
+import { Container, Row } from "react-bootstrap";
 const ChatPage = () => {
   const [user, setUser] = useState({});
   const [loaded, setLoaded] = useState(false);
-  const [socket] = useState(() => io(":8000"));
 
   useEffect(() => {
     axios
@@ -21,14 +21,19 @@ const ChatPage = () => {
       .catch((err) => {
         console.log(err);
       });
-
-    socket.emit(
-      "register",
-      `${user.firstName} ${user.lastName} has joined the chat`
-    );
   }, []);
 
-  return <>{loaded && <Chat user={user} />}</>;
+  return (
+    <>
+      {loaded && (
+        <Container>
+          <Row className="my-5">
+            <Chat user={user} />
+          </Row>
+        </Container>
+      )}
+    </>
+  );
 };
 
 export default ChatPage;

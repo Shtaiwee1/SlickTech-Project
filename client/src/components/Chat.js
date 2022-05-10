@@ -4,8 +4,6 @@ import io from "socket.io-client";
 const Chat = (props) => {
   const { user } = props;
 
-  const { firstName } = user;
-
   const [socket] = useState(() => io(":8000"));
 
   const [messages, setMessages] = useState([]);
@@ -21,9 +19,13 @@ const Chat = (props) => {
   const submitHandler = (e) => {
     e.preventDefault();
     setMessages((prevMessages) => {
-      return [...prevMessages, { firstName, text, joinMessage: false }];
+      return [...prevMessages, { user, text, joinMessage: false }];
     });
-    socket.emit("msg_from_user", { firstName, text, joinMessage: false });
+    socket.emit("msg_from_user", {
+      user,
+      text,
+      joinMessage: false,
+    });
     setText("");
   };
 
@@ -37,19 +39,27 @@ const Chat = (props) => {
     socket.on("msg_history", (messageHistory) => {
       setMessages(messageHistory);
     });
+
     socket.on("send_msg_to_others", (msg) => {
       console.log(msg);
       setMessages((prevMessages) => {
         return [...prevMessages, msg];
       });
     });
+
+    socket.emit("register", {
+      user,
+      text: `${user.firstName + " " + user.lastName} has joined the chat!`,
+      joinMessage: true,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [socket]);
 
   return (
     <Container className="my-5">
       <Row>
         <Col>
-          <h4>MERN Chat</h4>
+          <h4>Chat with Users or Admins!</h4>
         </Col>
       </Row>
       <Row className="justify-content-center">
@@ -57,7 +67,7 @@ const Chat = (props) => {
           <div
             ref={mesRef}
             style={{
-              maxHeight: "600px",
+              maxHeight: "400px",
               overflowY: "scroll",
             }}
           >
@@ -65,22 +75,27 @@ const Chat = (props) => {
               <div
                 className={
                   message.joinMessage
-                    ? "col-5 offset-7"
-                    : message.user === user
-                    ? "bg-primary col-5 text-light"
-                    : "bg-success col-5 offset-7 text-light"
+                    ? "col-5 offset-7 rounded-2"
+                    : message.user.id === user.id
+                    ? "bg-primary col-5 text-light rounded-3"
+                    : "bg-success col-5 offset-7 text-light rounded-3"
                 }
                 key={i}
               >
                 {message.joinMessage ? (
-                  message.user === user ? (
+                  message.user.id === user.id ? (
                     <p>You have joined the chat</p>
                   ) : (
                     message.text
                   )
                 ) : (
                   <>
-                    <p>{message.user === user ? "You" : message.user} said:</p>{" "}
+                    <p>
+                      {message.user.id === user.id
+                        ? "You "
+                        : message.user.firstName + " "}
+                      said:
+                    </p>
                     <p>{message.text}</p>
                   </>
                 )}
@@ -99,7 +114,12 @@ const Chat = (props) => {
                 />
               </Col>
               <Col xs={2}>
-                <Button variant="success" className="float-end" type="submit">
+                <Button
+                  variant="success"
+                  disabled={text.length === 0}
+                  className="float-end"
+                  type="submit"
+                >
                   Send
                 </Button>
               </Col>

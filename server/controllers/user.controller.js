@@ -145,7 +145,7 @@ module.exports.checkLogIn = async (req, res) => {
     const { id } = jwt.verify(req.cookies.usertoken, "RKCFBuTGXi");
     const { firstName, lastName, email, address, image, isAdmin } =
       await User.findOne({ _id: id });
-    res.json({ firstName, lastName, email, address, isAdmin, image });
+    res.json({ firstName, lastName, email, address, isAdmin, image, id });
   } else {
     res.json({});
   }
