@@ -42,14 +42,26 @@ This project is an electronics e-commerce website, where users can surf a variet
 
 **screenshot**
 -	Login/Registration Page.
-
+![My Image](https://github.com/odaisheikh/SlickTech-Project/blob/master/ReadMeImages/log_reg.PNG)
 
 -	Main Page.
+
+![My Image](https://github.com/odaisheikh/SlickTech-Project/blob/master/ReadMeImages/main.PNG)
 -	Product Details Page.
+
+![My Image](https://github.com/odaisheikh/SlickTech-Project/blob/master/ReadMeImages/product%20details.PNG)
 -	Cart Page.
+
+![My Image](https://github.com/odaisheikh/SlickTech-Project/blob/master/ReadMeImages/cart.PNG)
 -	Add Product Page.
+
+![My Image](https://github.com/odaisheikh/SlickTech-Project/blob/master/ReadMeImages/addproduct.PNG)
 -	Profile Page.
+
+![My Image](https://github.com/odaisheikh/SlickTech-Project/blob/master/ReadMeImages/profile.PNG)
 -	Chat with Admin.
+
+![My Image](https://github.com/odaisheikh/SlickTech-Project/blob/master/ReadMeImages/chat.PNG)
 -	About Us Page.
 
 ![My Image](https://github.com/odaisheikh/SlickTech-Project/blob/master/ReadMeImages/Aboutus.PNG)
