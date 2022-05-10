@@ -24,6 +24,24 @@ module.exports.getUserReviews = (req, res) => {
     .catch((err) => res.status(400).json(err));
 };
 
+module.exports.getAllReviews = (req, res) => {
+  Review.find({})
+    .populate("user")
+    .populate("product")
+    .sort("dueDate")
+    .then((reviews) => res.json(reviews))
+    .catch((err) => res.status(400).json(err));
+};
+
+module.exports.getProductReviews = (req, res) => {
+  Review.find({product:req.body.productId})
+    .populate("user")
+    .populate("product")
+    .sort("dueDate")
+    .then((reviews) => res.json(reviews))
+    .catch((err) => res.status(400).json(err));
+};
+
 /* module.exports.getReview = (req, res) => {
   const { id } = req.params;
   Athlete.findOne({ _id: id })

@@ -8,9 +8,16 @@ import Button from '@mui/material/Button';
 import '../style/card.css'
 import { Card, Row, Col,form } from "react-bootstrap";
 import NavBar from '../components/NavBar';
-import { clear } from '@testing-library/user-event/dist/clear';
 import TextMobileStepper from '../components/TextMobileStepper';
+import { useNavigate } from 'react-router-dom';
+
+
+
+
+
+
 const Main = () => {
+    const navigate = useNavigate();
     const [product, setProduct] = useState([]);
     const [loaded, setLoaded] = useState(false);
     const [name, setName] = useState("");
@@ -59,7 +66,7 @@ const Main = () => {
                                 <Typography variant="subtitle1" gutterBottom component="div">price:{product.price}</Typography>
                             </Box>
                             <Box padding={1}>
-                            <Button variant="contained">More Detail</Button>
+                            <Button variant="contained" onClick={() => navigate('/products/' + product._id)}>More Detail</Button>
                             </Box>
                             </Paper>
                         </Grid>

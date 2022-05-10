@@ -161,6 +161,21 @@ module.exports.addToCart = async (req, res) => {
     .catch((err) => res.status(400).send(err));
 };
 
+module.exports.removeFromCart = async (req, res) => {
+  const { productId } = req.body;
+  const { id } = jwt.verify(req.cookies.usertoken, "RKCFBuTGXi");
+
+  User.findOneAndUpdate(
+    {
+      _id: id,
+    },
+    { $pull: { cart: productId } },
+    { new: true, runValidators: true }
+  )
+    .then((updatedUser) => res.json(updatedUser))
+    .catch((err) => res.status(400).send(err));
+};
+
 module.exports.getCart = async (req, res) => {
   const { id } = jwt.verify(req.cookies.usertoken, "RKCFBuTGXi");
   User.findOne({ _id: id })

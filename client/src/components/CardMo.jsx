@@ -3,7 +3,6 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import {Link} from 'react-router-dom'
 import image from '../images/mohammad.jpg';
 
 
@@ -30,7 +29,6 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa fugit corporis vit
       <CardActions>
         <a style={{textDecoration:'none' , color:'white'}} href='https://www.linkedin.com/in/mohammad-omair-665076142/'>Contact</a>
         <a style={{textDecoration:'none' , color:'white'}} href= 'https://github.com/Shtaiwee1'>Github</a>
-
       </CardActions>
     </Card>
 
