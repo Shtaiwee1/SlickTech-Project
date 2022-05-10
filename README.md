@@ -56,6 +56,9 @@ This project is an electronics e-commerce website, where users can surf a variet
 # Cart Page:
 ![My Image](https://github.com/odaisheikh/SlickTech-Project/blob/master/ReadMeImages/cart.PNG)
 
+# Checkout Process:
+![My Image](https://github.com/odaisheikh/SlickTech-Project/blob/master/ReadMeImages/Chechout.gif)
+
 # Add Product Page:
 ![My Image](https://github.com/odaisheikh/SlickTech-Project/blob/master/ReadMeImages/addproduct.PNG)
 
@@ -69,7 +72,7 @@ This project is an electronics e-commerce website, where users can surf a variet
 ![My Image](https://github.com/odaisheikh/SlickTech-Project/blob/master/ReadMeImages/Admin%20dashboard.PNG)
 
 # Edit Product Page:
-![My Image](https://github.com/odaisheikh/SlickTech-Project/blob/master/ReadMeImages/Admin%20dashboard.PNG)
+![My Image](https://github.com/odaisheikh/SlickTech-Project/blob/master/ReadMeImages/Edit%20product.PNG)
 
 # About Us Page:
 ![My Image](https://github.com/odaisheikh/SlickTech-Project/blob/master/ReadMeImages/Aboutus.PNG)
