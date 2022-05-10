@@ -41,28 +41,28 @@ This project is an electronics e-commerce website, where users can surf a variet
 9-	About us page that displays an overview of the project with information about the creators.
 
 **screenshot**
--	Login/Registration Page.
+# Login/Registration Page.
 ![My Image](https://github.com/odaisheikh/SlickTech-Project/blob/master/ReadMeImages/log_reg.PNG)
 
--	Main Page.
+# Main Page.
 
 ![My Image](https://github.com/odaisheikh/SlickTech-Project/blob/master/ReadMeImages/main.PNG)
--	Product Details Page.
+# Product Details Page.
 
 ![My Image](https://github.com/odaisheikh/SlickTech-Project/blob/master/ReadMeImages/product%20details.PNG)
--	Cart Page.
+# Cart Page.
 
 ![My Image](https://github.com/odaisheikh/SlickTech-Project/blob/master/ReadMeImages/cart.PNG)
--	Add Product Page.
+# Add Product Page.
 
 ![My Image](https://github.com/odaisheikh/SlickTech-Project/blob/master/ReadMeImages/addproduct.PNG)
--	Profile Page.
+# Profile Page.
 
 ![My Image](https://github.com/odaisheikh/SlickTech-Project/blob/master/ReadMeImages/profile.PNG)
--	Chat with Admin.
+# Chat with Admin.
 
 ![My Image](https://github.com/odaisheikh/SlickTech-Project/blob/master/ReadMeImages/chat.PNG)
--	About Us Page.
+# About Us Page.
 
 ![My Image](https://github.com/odaisheikh/SlickTech-Project/blob/master/ReadMeImages/Aboutus.PNG)
 
