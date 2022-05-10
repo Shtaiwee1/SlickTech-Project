@@ -22,7 +22,10 @@ export default function MediaCard () {
         Sanad Abu Shama
         </Typography>
         <Typography style={{color:'white'}} variant="body2" color="text.secondary">
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, magni qui unde aspernatur quae, minima reprehenderit eligendi doloremque et facilis provident consectetur minus exercitationem ipsum.        </Typography>
+        A Full-Stack Developer with a Mechanical Engineering degree from Birzeit University aspiring to have a successful career
+in the technology industry. Went through a four-month immersive full-stack development boot camp provided by Coding
+Dojo and implemented by AXSOS Academy. Highly organized, self-sufficient, and capable of quick adaptation to new skills
+and technologies.        </Typography>
       </CardContent>
       <CardActions>
         <a style={{textDecoration:'none' , color:'white'}} href='https://www.linkedin.com/in/sanad-abu-shama/'>Contact</a>

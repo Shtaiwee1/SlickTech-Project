@@ -22,7 +22,8 @@ export default function MediaCard () {
         Odai Sheikh
         </Typography>
         <Typography style={{color:'white'}} variant="body2" color="text.light">
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis veniam vel sapiente velit rem distinctio in maxime numquam ad, expedita dolorem aut ducimus, ullam error.</Typography>
+        Full-Stack developer
+A Full-Stack developer who is passionate about programming and figuring out everything related to new technologies and very good at critical thinking and problem solving.Clear understanding of web applications.Willing to contribute to the team to achieve all goals within deadline</Typography>
 
       </CardContent>
       <CardActions>

@@ -24,7 +24,7 @@ export default function MediaCard () {
           Mohammad Omair
         </Typography>
         <Typography style={{color:'white'}} variant="body2" color="text.secondary">
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa fugit corporis vitae tempore neque delectus similique, qui et ratione. Illum distinctio nesciunt suscipit vel fugiat.        </Typography>
+        Enthusiastic Full-Stack Dev and Engineer, eager to contribute to team success through hard work. Clear understanding of web applications. Motivated to learn, grow and excel in building highly functional useful apps . Knowledgeable of backend and frontend development requirements. Collaborative team player with excellent technical abilities.        </Typography>
       </CardContent>
       <CardActions>
         <a style={{textDecoration:'none' , color:'white'}} href='https://www.linkedin.com/in/mohammad-omair-665076142/'>Contact</a>
