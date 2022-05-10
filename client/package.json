@@ -21,11 +21,7 @@
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
-<<<<<<< HEAD
     "socket.io-client": "^4.4.1",
-=======
-    "socket.io-client": "^4.5.0",
->>>>>>> b072cfce5a2a906293f6bd84a76184d1b4f16568
     "web-vitals": "^2.1.4"
   },
   "scripts": {
