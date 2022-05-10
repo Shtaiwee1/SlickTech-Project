@@ -33,10 +33,9 @@ module.exports.getAllReviews = (req, res) => {
 };
 
 module.exports.getProductReviews = (req, res) => {
-  Review.find({ product: req.body.productId })
+  Review.find({ product: req.params.productId })
     .populate("user")
     .populate("product")
-    .sort("dueDate")
     .then((reviews) => res.json(reviews))
     .catch((err) => res.status(400).json(err));
 };

@@ -1,28 +1,17 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Navbar from "../components/NavBar";
 import { Button, Typography, Rating } from "@mui/material";
 import ReviewForm from "../views/ReviewForm";
 import ReviewList from "../views/ReviewList";
-import { io } from "socket.io-client";
 
 const Detail = () => {
   const [product, setProduct] = useState({});
   const { productId } = useParams();
   const [reviews, setReviews] = useState([]);
-  const [loaded, setLoaded] = useState(false);
-
-  useEffect(() => {
-    const socket = io("http://localhost:5000");
-    console.log(
-      socket.on("first-message", (msg) => {
-        console.log(msg);
-      })
-    );
-  }, []);
+  const [productLoaded, setProductLoaded] = useState(false);
+  const [reviewsLoaded, setReviewsLoaded] = useState(false);
 
   useEffect(() => {
     axios
@@ -31,23 +20,21 @@ const Detail = () => {
       })
       .then((res) => {
         setProduct(res.data);
-        setLoaded(true);
+        setProductLoaded(true);
       })
-
       .catch((err) => console.error(err));
-  }, [productId]);
 
-  useEffect(() => {
     axios
       .get(
-        "http://localhost:8000/api/getProductReviews",
-        { productId },
+        "http://localhost:8000/api/getProductReviews/" + productId,
+
         { withCredentials: true }
       )
       .then((res) => {
         setReviews(res.data);
+        setReviewsLoaded(true);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(err.response));
   }, [productId]);
 
   const createReview = (review) => {
@@ -60,15 +47,19 @@ const Detail = () => {
       .then((res) => {
         setReviews([...reviews, res.data]);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err.response);
+      });
   };
 
-  var value = 4;
+  let sum = 0;
+  for (const review of reviews) {
+    sum += review.rating;
+  }
+  const totalRating = sum / reviews.length;
 
   return (
     <>
-      <Navbar />
-
       <div
         style={{
           display: "flex",
@@ -77,20 +68,22 @@ const Detail = () => {
         }}
       >
         <div style={{ width: "30%", height: "25rem" }}>
-          {loaded && product.image && (
+          {productLoaded && product.image && (
             <img
-            src={require("../images/" + product.image)}
-            alt="ff"
-            className="imgCard"
-            style={{ height: "100%", width: "100%" }}
-          ></img>
+              src={require("../images/" + product.image)}
+              alt="ff"
+              className="imgCard"
+              style={{ height: "100%", width: "100%" }}
+            ></img>
           )}
-          {loaded && !product.image &&  (<img
-            src={require("../images/productPlaceholder.jpg")}
-            alt="ff"
-            className="imgCard"
-            style={{ height: "100%", width: "100%" }}
-          ></img>) }
+          {productLoaded && !product.image && (
+            <img
+              src={require("../images/productPlaceholder.jpg")}
+              alt="ff"
+              className="imgCard"
+              style={{ height: "100%", width: "100%" }}
+            ></img>
+          )}
         </div>
         <div
           style={{
@@ -139,7 +132,7 @@ const Detail = () => {
                 <Rating
                   style={{ marginLeft: "2%" }}
                   name="read-only"
-                  value={value}
+                  value={totalRating}
                   readOnly
                 />
               </div>
@@ -235,8 +228,7 @@ const Detail = () => {
 
       <div style={{ marginTop: "10%", textAlign: "start", marginLeft: "5%" }}>
         <h2 style={{ marginBottom: "2%" }}>product Reviews:</h2>
-
-        <ReviewList reviews={reviews} />
+        {reviewsLoaded && <ReviewList reviews={reviews} />}
       </div>
     </>
   );

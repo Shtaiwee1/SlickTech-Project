@@ -3,8 +3,6 @@ const ReviewSchema = new mongoose.Schema(
   {
     comment: {
       type: String,
-      required: [true, "review is required"],
-      minlength: [8, "Review must be at least 8 characters"],
     },
     rating: {
       type: Number,
