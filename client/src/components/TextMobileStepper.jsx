@@ -62,10 +62,10 @@ return (
     <img src={ require("../images/" +product[activeStep].image )}
     alt='ff' className='imgCard' style={{height:'300px'}}></img>
     <Box paddingX={1}>
-        <Typography variant="subtitle1" gutterBottom component="div">product name:{product[activeStep].title}</Typography>
+        <Typography variant="subtitle1" gutterBottom component="div">Product Name:{product[activeStep].title}</Typography>
     </Box>
     <Box padding={1}>
-        <Typography variant="subtitle1" gutterBottom component="div">price:{product[activeStep].price}</Typography>
+        <Typography variant="subtitle1" gutterBottom component="div">Price:{product[activeStep].price} $</Typography>
     </Box>
     <Box padding={1}>
     <Button variant="contained">More Detail</Button>

@@ -1,7 +1,7 @@
 import React from "react";
 import { AppBar, IconButton, Toolbar, Stack, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
-
+import image from '../images/notification.png';
 import { useLocation } from "react-router-dom";
 
 export const MuiNavbar = () => {
@@ -74,6 +74,10 @@ export const MuiNavbar = () => {
               </Link>
             </>
           )}
+          <div className="icon" style={{position:'relative'}}>
+              <img src={image} alt='' className="notification" style={{width:'35px',borderRadius:'50%'}}/>
+              <div className="counter" style={{width:'20px' ,backgroundColor:'red', borderRadius:'50%',textAlign:'center',position:'absolute',top:'-9px',right:'-2px'}}>2</div>
+          </div>
           <Link
             style={{
               color: "white",

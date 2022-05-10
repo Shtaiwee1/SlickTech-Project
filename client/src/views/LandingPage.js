@@ -15,7 +15,6 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-
 const Main = () => {
     const navigate = useNavigate();
     const [product, setProduct] = useState([]);
@@ -60,10 +59,10 @@ const Main = () => {
                             <img src={require("../images/"+product.image)}
                             alt='ff' className='imgCard' style={{height:'250px'}}></img>
                             <Box paddingX={1}>
-                                <Typography variant="subtitle1" gutterBottom component="div">product name: {product.title}</Typography>
+                                <Typography variant="subtitle1" gutterBottom component="div">Product Name: {product.title}</Typography>
                             </Box>
                             <Box padding={1}>
-                                <Typography variant="subtitle1" gutterBottom component="div">price:{product.price}</Typography>
+                                <Typography variant="subtitle1" gutterBottom component="div">Price:{product.price} $</Typography>
                             </Box>
                             <Box padding={1}>
                             <Button variant="contained" onClick={() => navigate('/products/' + product._id)}>More Detail</Button>

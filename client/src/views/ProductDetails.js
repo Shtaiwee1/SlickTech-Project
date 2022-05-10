@@ -7,13 +7,24 @@ import Navbar from '../components/NavBar'
 import {Button , Typography , Rating} from '@mui/material';
 import ReviewForm from '../views/ReviewForm'
 import ReviewList from '../views/ReviewList'
+import { io } from "socket.io-client";
 
     
 const Detail = () => {
     const [product, setProduct] = useState({})
     const { productId } = useParams();
     const [reviews, setReviews] = useState([]);
+    const [socket , setSocket]=useState(null);
     
+    useEffect(
+        ()=>{
+            const socket= io('http://localhost:5000')
+            console.log(socket.on('first-message',(msg)=>{
+                console.log(msg)
+                
+            }))
+        },[]
+    )
     useEffect(() => {
         axios.get('http://localhost:8000/api/products/' + productId  , {withCredentials: true} )
             .then(res => setProduct(res.data))
