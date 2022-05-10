@@ -1,23 +1,21 @@
 import * as React from "react";
 import { useState } from "react";
 import { Form } from "react-bootstrap";
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Alert from '@mui/material/Alert';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import TextareaAutosize from '@mui/material/TextareaAutosize';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import NavBar from '../components/NavBar';
+
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+
+import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import TextareaAutosize from "@mui/material/TextareaAutosize";
+import Container from "@mui/material/Container";
+import NavBar from "../components/NavBar";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Alert } from "@mui/material";
 
 function Copyright(props) {
   return (
@@ -37,48 +35,48 @@ function Copyright(props) {
   );
 }
 
-    const theme = createTheme();
-    export default function SignUp() {
-    const [title, setTitle] = useState("");
-    const [price, setPrice] = useState(0);
-    const [desc, setDesc] = useState("");
-    const [image, setImage] = useState("");
-    const [errors, setErrors] = useState({});
-    const navigate = useNavigate();
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-        email: data.get('email'),
-        password: data.get('password'),
-        });
-        const formData = new FormData();
-        formData.append("title", title);
-        formData.append("price", price);
-        formData.append("image", image);
-        formData.append("desc", desc);
-        
-        axios.post("http://localhost:8000/api/addProduct", formData, {
-            withCredentials: true,
-            headers: { "content-type": "multipart/form-data" },
-        })
-        .then((res) => {
-            console.log(res.data);
-            navigate("/");
-        })
-        .catch((err) => {
-            console.log(err.response);
-            setErrors(err.response.data.errors);
-        });
-    };
+export default function SignUp() {
+  const [title, setTitle] = useState("");
+  const [price, setPrice] = useState(0);
+  const [desc, setDesc] = useState("");
+  const [image, setImage] = useState("");
+  const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    console.log({
+      email: data.get("email"),
+      password: data.get("password"),
+    });
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("price", price);
+    formData.append("image", image);
+    formData.append("desc", desc);
 
-    const imageHandler = (e) => {
-        setImage(e.target.files[0]);
-    };
-    return (
-        <div className='backimage'>
-        <NavBar />
-        <div style={{marginTop:'150px'}}>
+    axios
+      .post("http://localhost:8000/api/addProduct", formData, {
+        withCredentials: true,
+        headers: { "content-type": "multipart/form-data" },
+      })
+      .then((res) => {
+        console.log(res.data);
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err.response);
+        setErrors(err.response.data.errors);
+      });
+  };
+
+  const imageHandler = (e) => {
+    setImage(e.target.files[0]);
+  };
+  return (
+    <div className="backimage">
+      <NavBar />
+      <div style={{ marginTop: "150px" }}>
         <Container component="main" maxWidth="xs">
           <CssBaseline />
           <Box
@@ -100,6 +98,11 @@ function Copyright(props) {
             >
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
+                  {"title" in errors && (
+                    <Alert severity="error" className="mb-3">
+                      {errors.title.message}
+                    </Alert>
+                  )}
                   <TextField
                     value={title}
                     autoComplete="given-name"
@@ -115,6 +118,11 @@ function Copyright(props) {
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
+                  {"price" in errors && (
+                    <Alert severity="error" className="mb-3">
+                      {errors.price.message}
+                    </Alert>
+                  )}
                   <TextField
                     required
                     fullWidth
@@ -129,10 +137,20 @@ function Copyright(props) {
                   />
                 </Grid>
                 {"title" in errors && (
-                                <Alert style={{width:'400px',marginLeft:'14px'}} severity="error">{errors.title.message}</Alert>
-                                )}
+                  <Alert
+                    style={{ width: "400px", marginLeft: "14px" }}
+                    severity="error"
+                  >
+                    {errors.title.message}
+                  </Alert>
+                )}
                 {"price" in errors && (
-                <Alert style={{width:'400px',marginLeft:'14px'}} severity="error">{errors.price.message}</Alert>
+                  <Alert
+                    style={{ width: "400px", marginLeft: "14px" }}
+                    severity="error"
+                  >
+                    {errors.price.message}
+                  </Alert>
                 )}
                 <Grid item xs={12}>
                   <Form.Group controlId="formFileLg" className="mb-3">
@@ -148,6 +166,11 @@ function Copyright(props) {
                   </Form.Group>
                 </Grid>
                 <Grid item xs={12}>
+                  {"desc" in errors && (
+                    <Alert severity="error" className="mb-3">
+                      {errors.desc.message}
+                    </Alert>
+                  )}
                   <TextareaAutosize
                     value={desc}
                     aria-label="minimum height"
@@ -157,24 +180,15 @@ function Copyright(props) {
                     onChange={(e) => setDesc(e.target.value)}
                   />
                 </Grid>
-                {"desc" in errors && (
-                                <Alert style={{width:'400px',marginLeft:'14px'}} severity="error">{errors.desc.message}</Alert>
-                                )}
-                </Grid>
-                <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-              >
+              </Grid>
+              <Button type="submit" variant="contained" sx={{ mt: 3, mb: 2 }}>
                 Add Product
               </Button>
             </Box>
           </Box>
           <Copyright sx={{ mt: 5 }} />
         </Container>
-        </div>
-        </div>
-    );
-    
+      </div>
+    </div>
+  );
 }

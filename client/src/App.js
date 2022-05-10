@@ -9,11 +9,12 @@ import ProjectForm from "./views/ProjectForm";
 import AddProduct from "./views/AddProduct";
 import LandingPage from "./views/LandingPage";
 import Navbar from "./components/NavBar";
-import AboutUs from "./components/AboutUs"
-import ProductDetails from './views/ProductDetails'
-import './components/FontawesomeIcons'
+import AboutUs from "./components/AboutUs";
+import ProductDetails from "./views/ProductDetails";
+import "./components/FontawesomeIcons";
 
 import UserProfile from "./views/UserProfile";
+import Cart from "./views/Cart";
 
 function App() {
   return (
@@ -40,9 +41,10 @@ function App() {
             }
           />
           <Route path="/profile" element={<UserProfile />} />
-          <Route path='/addProduct' element={<AddProduct />}/>
-          <Route path='/home' element={<LandingPage />}/>
-          <Route path="products/:productId" element={<ProductDetails />}/>
+          <Route path="/addProduct" element={<AddProduct />} />
+          <Route path="/Home" element={<LandingPage />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="products/:productId" element={<ProductDetails />} />
         </Routes>
       </BrowserRouter>
     </div>

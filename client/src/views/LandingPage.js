@@ -6,8 +6,8 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import '../style/card.css'
+import { Form } from "react-bootstrap";
 import NavBar from '../components/NavBar';
-import { clear } from '@testing-library/user-event/dist/clear';
 import TextMobileStepper from '../components/TextMobileStepper';
 import { useNavigate } from 'react-router-dom';
 
@@ -20,6 +20,7 @@ const Main = () => {
     const navigate = useNavigate();
     const [product, setProduct] = useState([]);
     const [loaded, setLoaded] = useState(false);
+    const [name, setName] = useState("");
     useEffect(() => {
         axios
             .get("http://localhost:8000/api/allProduct")
@@ -38,10 +39,21 @@ const Main = () => {
         <div style={{display:'flex',justifyContent:'center'}}>
             <TextMobileStepper />
         </div>
+        <div>
+            <Form>
+                <div className='form-group' style={{display:'flex',justifyContent:'center'}}>
+                    <Form.Control onChange={e=>setName(e.target.value)} type='text' placeholder='search' style={{margin:'4px',width:'600px',borderRadius:'5px'}}/>
+                </div>
+            </Form>
+        </div>
         <div style={{margin:'1px',display:'clear',marginTop:'30px'}}>
         <Grid container spacing={3} style={{margin:'4px'}}>
         {loaded && (
-                product.map((product, index)=>{
+                product.filter((item,idx)=>{
+                    return(
+                        item.title.includes(name)
+                    )
+                }).map((product, index)=>{
                     return (<Grid key={index} xs={3}  style={{marginTop:'4px'}}>
                         <Grid spacing={3} style={{margin:'7px'}}>
                             <Paper>

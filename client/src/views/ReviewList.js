@@ -1,13 +1,8 @@
-import  { useEffect, useState } from 'react'
 import React from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-import {Button , Typography , Grid , Rating} from '@mui/material';
-
-
+import { Rating} from '@mui/material';
 
 const ReviewList = (props) => {
-    const {removeFromDom} = props;
+ 
 
     return (
         <div>

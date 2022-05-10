@@ -19,7 +19,7 @@ export const MuiNavbar = () => {
         </IconButton>
         <Typography
           variant="h6"
-          component="div"
+          component="span"
           sx={{ flexGrow: 1 }}
         ></Typography>
         <Stack direction="row" spacing={7}>
