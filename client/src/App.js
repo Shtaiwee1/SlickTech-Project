@@ -41,7 +41,7 @@ function App() {
           />
           <Route path="/profile" element={<UserProfile />} />
           <Route path='/addProduct' element={<AddProduct />}/>
-          <Route path='/Home' element={<LandingPage />}/>
+          <Route path='/home' element={<LandingPage />}/>
           <Route path="products/:productId" element={<ProductDetails />}/>
         </Routes>
       </BrowserRouter>

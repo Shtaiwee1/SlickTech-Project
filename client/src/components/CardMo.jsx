@@ -12,7 +12,7 @@ export default function MediaCard () {
   
     
   return (
-    <Card style={{backgroundColor:'#852EB8' }} sx={{ maxWidth: 300 }}>
+    <Card style={{backgroundColor:'#027C85' }} sx={{ maxWidth: 300 }}>
       <img src={image}
         
         height="240"

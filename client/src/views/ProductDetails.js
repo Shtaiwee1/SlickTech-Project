@@ -5,9 +5,10 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Navbar from '../components/NavBar'
-import {Button , Typography , Grid , Rating} from '@mui/material';
+import {Button , Typography , Grid , Rating, requirePropFactory} from '@mui/material';
 import ReviewForm from '../views/ReviewForm'
 import ReviewList from '../views/ReviewList'
+
 
     
 const Detail = (props) => {
@@ -15,11 +16,17 @@ const Detail = (props) => {
     const { productId } = useParams();
     const navigate = useNavigate();
     const [reviews, setReviews] = useState([]);
+    const [loaded , setLoaded] = useState(false);
+
+    
     
     useEffect(() => {
         axios.get('http://localhost:8000/api/products/' + productId  , {withCredentials: true} )
-            .then(res => setProduct(res.data))
+            .then(res => {setProduct(res.data);
+            setLoaded(true)  })
+
             .catch(err => console.error(err));
+            
     }, []);
 
     useEffect(()=>{
@@ -30,6 +37,8 @@ const Detail = (props) => {
             })
             .catch(err => console.error(err));
     },[]);
+
+    
 
 
     const createReview = review => {
@@ -42,49 +51,49 @@ const Detail = (props) => {
 
   
 
-    var value=2
+    var value=4
     
     return (
         <>
         <Navbar/>
     
-        <div  style={{display:'flex' , justifyContent:'space-between'  , marginTop:'10%'  }}>
-            <div style={{backgroundColor:'grey' , width:'30%' }}>
-                <p>place holder for image</p>
+        <div  style={{display:'flex' , justifyContent:'space-evenly'  , marginTop:'10%'  }}>
+            <div style={{ width:'30%' , height:'25rem'  }}>
+            {loaded && <img src={require("../images/"+product.image)}
+            alt='ff' className='imgCard' style={{height:'100%' , width:'100%'}}></img>}
             </div>
-            <div style={{backgroundColor:'grey', width:'60%' , height:'30rem' , display:'flex' , flexDirection:"column" , justifyContent:'space-evenly' }} >
+            <div style={{ width:'50%' , height:'25rem' , display:'flex' , flexDirection:"column" , justifyContent:'space-around' ,  border:'2px solid rgba(158, 153, 158, 0.45)' ,  textAlign:'start' }} >
                 <div>
-                <FontAwesomeIcon icon="header" className='fa-2x' /><h1 style={{display:'inline' , padding:'20px' , marginTop:'20px'}}> {product.title}</h1><br/>
-                </div>
-
-                <div>
-                    <div style={{display:'flex' , justifyContent:'center' , alignItems:'center'}}>
-                <FontAwesomeIcon icon="star" className='fa-2x' /><h2 style={{display:'inline' , padding:'20px' , marginTop:'20px'}}> 
-                <Typography component="legend">Rating:</Typography>
-                    </h2>
-                    <Rating name="read-only" value={value} readOnly />
+                <h1 style={{display:'inline'  , marginTop:'20px' , marginLeft:'5%'}}> {product.title}</h1><br/>
+                <div >
+                    <div style={{display:'flex'  , alignItems:'center',textAlign:'start'  }}>
+                        <FontAwesomeIcon style={{marginLeft:'5%'}} icon="star" className='fa-lg ' /><h2 style={{display:'inline'  , marginTop:'20px'}}> 
+                        <Typography style={{marginLeft:'5%' , fontWeight:'700' , marginBottom:'10%'}} component="legend">Rating:</Typography>
+                        </h2>
+                        <Rating style={{marginLeft:'2%'}} name="read-only" value={value} readOnly />
                     </div>
+                    <hr/>
+                </div>
+                </div>
                 
+                <div style={{display:'flex'  , alignItems:'center',textAlign:'start'   }}>
+                <FontAwesomeIcon style={{marginLeft:'5%'}} icon='money-bill' className='fa-lg' />
+                <Typography style={{marginLeft:'2%' , fontWeight:'700' , fontSize:'25px' , width:'60px' }} component="legend">Price:</Typography>
+                <Button variant="contained" disabled  style={{display:'inline' , padding:'3px',fontSize:'18px' , backgroundColor:'#1c96f8' , color:'white' , marginLeft:'3%' , borderRadius:'10px'}}> {product.price} $</Button><br/>
                 </div>
 
                 <div>
-                <FontAwesomeIcon icon='money-bill' className='fa-2x' /><h2 style={{display:'inline' , padding:'20px'}}> {product.price} $</h2><br/>
+                <div style={{display:'flex'  , alignItems:'center',textAlign:'start'   }} >
+                <FontAwesomeIcon style={{marginLeft:'5%'}} icon=" fa-circle-check" className=' fa-lg ' />
+                <Typography style={{marginLeft:'1%' , fontWeight:'700' , fontSize:'25px', width:'40%'}} component="legend">Description:</Typography>
                 </div>
-
-                <div>
-                <FontAwesomeIcon icon='info' className='fa-2x' /><h2 style={{display:'inline' , padding:'20px'}}> {product.desc}</h2><br/>
+                <p style={{marginLeft:'5%' , width:'80%'}}> {product.desc}</p><br/>
                 </div>
-
-                <div>
-                    <Link to={"/products/" + product._id + "/edit"}>Edit</Link>
-                    <Button variant="outlined" color="error" >
-                            Delete
-                    </Button>
-                </div>
+                
 
                 <div style={{display:'flex' , justifyContent:'space-evenly'}}>
                 <Button variant="contained">Buy Now</Button>
-                <Button variant="contained">Add To Cart</Button>
+                <Button style={{backgroundColor:'#ff3648'}} variant="contained" >Add To Cart</Button>
                 </div>   
             </div>
         </div>
@@ -94,7 +103,7 @@ const Detail = (props) => {
         <ReviewForm onSubmitProp={createReview} initialComment="" initialRating=""/>
 
             <div style={{marginTop:'10%' , textAlign:'start' , marginLeft:'5%'}}>
-            <h2 style={{marginBottom:'2%'}} >User Reviews:</h2>
+            <h2 style={{marginBottom:'2%'}} >product Reviews:</h2>
             
              <ReviewList reviews={reviews}/> 
             </div>
