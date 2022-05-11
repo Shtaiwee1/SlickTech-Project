@@ -1,10 +1,9 @@
-.backimage{
-    background-image: url("../images/background-third.jpg");
-    background-image: no-repeat; 
-    height: 100%;
-    width: 100%;
-    background-size: cover;
-    position: relative;
-    background-position: 50% 50%;
-    
+.backimage {
+  background-image: url("../images/slickTechbackground.png");
+  background-image: no-repeat;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  position: relative;
+  background-position: 50% 50%;
 }

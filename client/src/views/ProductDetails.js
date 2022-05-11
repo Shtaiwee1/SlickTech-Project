@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button, Typography, Rating , TextField } from "@mui/material";
+import { Button, Typography, Rating, TextField, Alert } from "@mui/material";
 import ReviewForm from "../views/ReviewForm";
 import ReviewList from "../views/ReviewList";
 
@@ -12,8 +12,8 @@ const Detail = () => {
   const [reviews, setReviews] = useState([]);
   const [productLoaded, setProductLoaded] = useState(false);
   const [reviewsLoaded, setReviewsLoaded] = useState(false);
-  const [count , setCount] = useState("");
-
+  const [count, setCount] = useState("");
+  const [msg, setMsg] = useState("");
 
   useEffect(() => {
     axios
@@ -54,20 +54,22 @@ const Detail = () => {
       });
   };
 
-  const AddToCart =  count =>{
-    axios.put(`http://localhost:8000/api/addToCart`,{productId , count},
+  const AddToCart = (count) => {
+    axios
+      .put(
+        `http://localhost:8000/api/addToCart`,
+        { productId, count },
         { withCredentials: true }
       )
       .then((res) => {
         console.log(res);
-        console.log(productId)
-        console.log(count)
-
+        console.log(productId);
+        console.log(count);
+        setMsg("Successfully added to cart!");
       })
       .then((res) => console.log(res))
       .catch((err) => console.error(err));
   };
-
 
   let sum = 0;
   for (const review of reviews) {
@@ -156,7 +158,7 @@ const Detail = () => {
               <hr />
             </div>
           </div>
-
+          {msg && <Alert severity="success">{msg}</Alert>}
           <div
             style={{
               display: "flex",
@@ -169,6 +171,7 @@ const Detail = () => {
               icon="money-bill"
               className="fa-lg"
             />
+
             <Typography
               style={{
                 marginLeft: "2%",
@@ -180,6 +183,7 @@ const Detail = () => {
             >
               Price:
             </Typography>
+
             <Button
               variant="contained"
               disabled
@@ -230,8 +234,18 @@ const Detail = () => {
 
           <div style={{ display: "flex", justifyContent: "space-evenly" }}>
             <Button variant="contained">Buy Now</Button>
-            <TextField type="number" id="outlined-basic" label="Quantity" variant="outlined" onChange={(e) => setCount(e.target.value)}   />
-            <Button style={{ backgroundColor: "#ff3648" }} onClick={()=>AddToCart(count)} variant="contained">
+            <TextField
+              type="number"
+              id="outlined-basic"
+              label="Quantity"
+              variant="outlined"
+              onChange={(e) => setCount(e.target.value)}
+            />
+            <Button
+              style={{ backgroundColor: "#ff3648" }}
+              onClick={() => AddToCart(count)}
+              variant="contained"
+            >
               Add To Cart
             </Button>
           </div>
@@ -245,7 +259,7 @@ const Detail = () => {
       />
 
       <div style={{ marginTop: "10%", textAlign: "start", marginLeft: "5%" }}>
-        <h2 style={{ marginBottom: "2%" }}>product Reviews:</h2>
+        <h2 style={{ marginBottom: "2%" }}>Product Reviews:</h2>
         {reviewsLoaded && <ReviewList reviews={reviews} />}
       </div>
     </>

@@ -29,6 +29,7 @@ module.exports = function (app) {
   app.put("/api/removeFromCart", authenticate, UserController.removeFromCart);
   app.put("/api/makeAdmin", authenticate, UserController.makeAdmin);
   app.get("/api/getCart", authenticate, UserController.getCart);
+  app.put("/api/clearCart", authenticate, UserController.clearCart);
   //product api
   app.post(
     "/api/addProduct",

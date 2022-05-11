@@ -7,7 +7,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import "../style/card.css";
 import { Form } from "react-bootstrap";
-
+//import "../style/background.css";
 import TextMobileStepper from "../components/TextMobileStepper";
 import { useNavigate } from "react-router-dom";
 
@@ -16,6 +16,7 @@ const Main = () => {
   const [product, setProduct] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [name, setName] = useState("");
+
   useEffect(() => {
     axios
       .get("http://localhost:8000/api/allProduct")
@@ -26,13 +27,14 @@ const Main = () => {
       })
       .catch((err) => console.log(err));
   }, []);
+
   return (
-    <>
+    <div className="backimage">
       <div
         style={{
           display: "flex",
           justifyContent: "center",
-          marginTop: "100px",
+          paddingTop: "100px",
         }}
       >
         <TextMobileStepper />
@@ -114,7 +116,7 @@ const Main = () => {
               })}
         </Grid>
       </div>
-    </>
+    </div>
   );
 };
 

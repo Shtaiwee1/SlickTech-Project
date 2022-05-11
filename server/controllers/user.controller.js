@@ -204,3 +204,18 @@ module.exports.makeAdmin = (req, res) => {
     .then((updatedUser) => res.json(updatedUser))
     .catch((err) => res.status(400).send(err));
 };
+
+module.exports.clearCart = async (req, res) => {
+  console.log(req.cookies.usertoken);
+
+  const { id } = jwt.verify(req.cookies.usertoken, "RKCFBuTGXi");
+  User.findOneAndUpdate(
+    {
+      _id: id,
+    },
+    { $set: { cart: [] } },
+    { new: true, runValidators: true }
+  )
+    .then((updatedUser) => res.json(updatedUser))
+    .catch((err) => res.status(400).send(err));
+};
