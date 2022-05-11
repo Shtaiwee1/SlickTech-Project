@@ -1,6 +1,7 @@
 # SlickTech-Project
 **Overview:**
 This project is an electronics e-commerce website, where users can surf a variety of tech-related products, add products to their carts, in addition to reviewing and rating these products where these reviews will be visible to other users. Users can also search for products, view their carts, and view their profiles.
+
 **About us:**
 1. Odai Sheikh
 2-	Mohammad Omair.
